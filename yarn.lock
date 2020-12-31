@@ -7442,6 +7442,11 @@ jiti@^0.1.16, jiti@^0.1.17:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-0.1.17.tgz#b693a29c94d0ca4f82a4624b40dd9915527416be"
   integrity sha512-IlUGuEHKA44dqJoSqpv1poIRyyi31ciEmpLlRZCmo9TasVSZhwfmaVUuQVs26EHuwYdx+NirOm41+wbykH/+9Q==
 
+jiti@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-0.1.19.tgz#455f93e0c92f26c9cea0af48def3eb4f567bbbe3"
+  integrity sha512-ElDW0w/0ATX6IQwReNYMVrYkHu8PqIOO5t3lluceP/saq4SYz4D3uSMpU8pbn/RX3H6VYVPc0PnKn2WfQ5kiwg==
+
 jju@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/jju/-/jju-1.4.0.tgz#a3abe2718af241a2b2904f84a625970f389ae32a"
@@ -9169,10 +9174,10 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-playwright@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.7.0.tgz#72a836dcdfa5a99cc36981eb2e86abafd9a30ce3"
-  integrity sha512-yHf4lySomty4wtWetzXu71zswPOBMHnCqyeGM3dMRObuflyuIUWb0/U++hxZnwHCkyS1H8/1+93Rjq25Rz3IGw==
+playwright@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.7.1.tgz#841638811bc39eb2fed792ffaacbcc959a0aaf5e"
+  integrity sha512-dOSWME42wDedJ/PXv8k0zG0Kxd6d6R2OKA51/05++Z2ISdA4N58gHlWqlVKPDkBog1MI6lu/KNt7QDn19AybWQ==
   dependencies:
     debug "^4.1.1"
     extract-zip "^2.0.1"
@@ -11721,7 +11726,18 @@ ts-jest@latest:
     semver "7.x"
     yargs-parser "20.x"
 
-ts-loader@^8.0.12, ts-loader@^8.0.3:
+ts-loader@^8.0.13:
+  version "8.0.13"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.13.tgz#2bebeb833570ca46bb9338322a9a29900e988535"
+  integrity sha512-1o1nO6aqouA23d2nlcMSEyPMAWRhnYUU0EQUJSc60E0TUyBNX792RHFYUN1ZM29vhMUNayrsbj2UVdZwKhXCDA==
+  dependencies:
+    chalk "^2.3.0"
+    enhanced-resolve "^4.0.0"
+    loader-utils "^1.0.2"
+    micromatch "^4.0.0"
+    semver "^6.0.0"
+
+ts-loader@^8.0.3:
   version "8.0.12"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.12.tgz#1de9f1de65176318c1e6d187bfc496182f8dc2a0"
   integrity sha512-UIivVfGVJDdwwjgSrbtcL9Nf10c1BWnL1mxAQUVcnhNIn/P9W3nP5v60Z0aBMtc7ZrE11lMmU6+5jSgAXmGaYw==
