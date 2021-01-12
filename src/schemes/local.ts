@@ -81,6 +81,8 @@ export class LocalScheme<
       ...(defaults as OptionsT[]),
       DEFAULTS as OptionsT
     )
+    console.log('LocalScheme constructor')
+
 
     // Initialize Token instance
     this.token = new Token(this, this.$auth.$storage)
@@ -151,6 +153,7 @@ export class LocalScheme<
 
     // Ditch any leftover local tokens before attempting to log in
     if (reset) {
+      console.log('LocalScheme auth reset called')
       this.$auth.reset({ resetInterceptor: false })
     }
 
@@ -175,6 +178,8 @@ export class LocalScheme<
       this.options.endpoints.login
     )
 
+    console.log('Response from endpoint:', JSON.stringify(response))
+
     // Update tokens
     this.updateTokens(response)
 
@@ -192,6 +197,7 @@ export class LocalScheme<
   }
 
   setUserToken(token: string): Promise<HTTPResponse | void> {
+    console.log('LocalScheme setUserToken', token)
     this.token.set(token)
 
     // Fetch user
@@ -248,10 +254,14 @@ export class LocalScheme<
   }
 
   protected updateTokens(response: HTTPResponse): void {
+    console.log(
+      'LocalScheme updateTokens:this.options',
+      JSON.stringify(this.options)
+    )
     const token = this.options.token.required
       ? (getResponseProp(response, this.options.token.property) as string)
       : true
-
+    console.log('LocalScheme updateTokens: token', token)
     this.token.set(token)
   }
 

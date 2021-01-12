@@ -37,16 +37,18 @@ export class Storage {
 
   setUniversal<V extends unknown>(key: string, value: V): V | void {
     // Unset null, undefined
+    console.log('storage.ts.setUniversal: 1')
     if (isUnset(value)) {
+      console.log('storage.ts.setUniversal: 2')
       return this.removeUniversal(key)
     }
-
+    console.log('storage.ts.setUniversal: 3')
     // Cookies
     this.setCookie(key, value)
-
+    console.log('storage.ts.setUniversal: 4')
     // Local Storage
     this.setLocalStorage(key, value)
-
+    console.log('storage.ts.setUniversal: 5')
     // Local state
     this.setState(key, value)
 
@@ -240,18 +242,21 @@ export class Storage {
     if (!this.options.cookie || (process.server && !this.ctx.res)) {
       return
     }
-
+    console.log('storage.ts.setCookie: 1')
     const _prefix =
       options.prefix !== undefined ? options.prefix : this.options.cookie.prefix
     const _key = _prefix + key
     const _options = Object.assign({}, this.options.cookie.options, options)
     const _value = encodeValue(value)
 
+    console.log('storage.ts.setCookie: 2')
+
     // Unset null, undefined
     if (isUnset(value)) {
       _options.maxAge = -1
     }
 
+    console.log('storage.ts.setCookie: 3')
     // Accept expires as a number for js-cookie compatiblity
     if (typeof _options.expires === 'number') {
       _options.expires = new Date(Date.now() + _options.expires * 864e5)
@@ -262,6 +267,7 @@ export class Storage {
     if (process.client) {
       // Set in browser
       document.cookie = serializedCookie
+      console.log('storage.ts.setCookie: 4')
     } else if (process.server && this.ctx.res) {
       // Send Set-Cookie header from server side
       const cookies = (this.ctx.res.getHeader('Set-Cookie') as string[]) || []

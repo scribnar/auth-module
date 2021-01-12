@@ -44,6 +44,7 @@ export class CookieScheme<
   extends LocalScheme<OptionsT>
   implements TokenableScheme<OptionsT> {
   constructor($auth: Auth, options: SchemePartialOptions<CookieSchemeOptions>) {
+    console.log('CookieScheme constructor')
     super($auth, options, DEFAULTS)
   }
 
@@ -60,25 +61,30 @@ export class CookieScheme<
 
   check(): SchemeCheck {
     const response = { valid: false }
+    console.log('CookieScheme check')
 
     if (!super.check().valid) {
+      console.log('CookieScheme check failed')
       return response
     }
 
+    console.log('CookieScheme cookie name:', this.options.cookie.name)
     if (this.options.cookie.name) {
       const cookies = this.$auth.$storage.getCookies()
       response.valid = Boolean(cookies[this.options.cookie.name])
+      console.log('CookieScheme response:', response.valid)
       return response
     }
 
     response.valid = true
+    console.log('CookieScheme returning true')
     return response
   }
 
   async login(endpoint: HTTPRequest): Promise<HTTPResponse> {
     // Ditch any leftover local tokens before attempting to log in
     this.$auth.reset()
-
+    console.log('CookieScheme login')
     // Make CSRF request if required
     if (this.options.endpoints.csrf) {
       await this.$auth.request(this.options.endpoints.csrf, {
@@ -90,6 +96,7 @@ export class CookieScheme<
   }
 
   reset(): void {
+    console.log('CookieScheme reset')
     if (this.options.cookie.name) {
       this.$auth.$storage.setCookie(this.options.cookie.name, null, {
         prefix: ''

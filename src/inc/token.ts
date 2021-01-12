@@ -22,7 +22,7 @@ export class Token {
 
   set(tokenValue: string | boolean): string | boolean {
     const token = addTokenPrefix(tokenValue, this.scheme.options.token.type)
-
+    console.log('Token.ts.set: tokenValue:', tokenValue)
     this._setToken(token)
     this._updateExpiration(token)
 
@@ -98,7 +98,7 @@ export class Token {
 
   private _setToken(token: string | boolean): string | boolean {
     const _key = this.scheme.options.token.prefix + this.scheme.name
-
+    console.log('token.ts._setToken: 1')
     return this.$storage.setUniversal(_key, token) as string | boolean
   }
 

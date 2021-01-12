@@ -179,6 +179,7 @@ export class Auth {
   }
 
   loginWith(name: string, ...args: unknown[]): Promise<HTTPResponse | void> {
+    console.log('@nuxtjs/auth loginWith called...')
     return this.setStrategy(name).then(() => this.login(...args))
   }
 
@@ -312,7 +313,10 @@ export class Auth {
 
     if (!this.ctx.app.$axios) {
       // eslint-disable-next-line no-console
-      console.error('[AUTH] add the @nuxtjs/axios module to nuxt.config file')
+      console.log('Test auth change')
+      console.error(
+        '[AUTH] add the @nuxtjs/axios module to nuxt.config file changed lets see'
+      )
       return
     }
 
@@ -333,6 +337,8 @@ export class Auth {
     // TODO: Check if is Tokenable Scheme
     const token = (this.getStrategy() as TokenableScheme).token.get()
 
+    console.log('auth.ts.requestWith: token', token)
+
     const _endpoint = Object.assign({}, defaults, endpoint)
 
     // TODO: Use `this.getStrategy()` instead of `this.strategies[strategy]`
@@ -342,14 +348,34 @@ export class Auth {
     if (!_endpoint.headers) {
       _endpoint.headers = {}
     }
-    if (
-      !_endpoint.headers[tokenName] &&
-      isSet(token) &&
-      token &&
+
+    console.log(
+      'auth.ts.requestWith: !_endpoint.headers[tokenName]',
+      !_endpoint.headers[tokenName]
+    )
+    console.log('auth.ts.requestWith: isSet(token)', isSet(token))
+
+    console.log(
+      "auth.ts.requestWith: typeof token === 'string'",
       typeof token === 'string'
-    ) {
+    )
+
+    console.log('auth.ts.requestWith: typeof token ', typeof token)
+
+    // if (
+    //   !_endpoint.headers[tokenName] &&
+    //   isSet(token) &&
+    //   token &&
+    //   typeof token === 'string'
+    // ) {
+    //   _endpoint.headers[tokenName] = token
+    // }
+
+    if (!_endpoint.headers[tokenName] && isSet(token) && token) {
       _endpoint.headers[tokenName] = token
     }
+
+    console.log('auth.ts.requestWith: endpoint', JSON.stringify(_endpoint))
 
     return this.request(_endpoint)
   }
